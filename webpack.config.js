@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    react: './js/react.js',
+    global: './js/global.js',
   },
   output: {
     path: './js/',
