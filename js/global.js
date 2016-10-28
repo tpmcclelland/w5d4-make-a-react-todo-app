@@ -21,7 +21,17 @@ function addTodo(event) {
 
     if ((event.type === 'keypress' && event.key === 'Enter') || event.type === 'click') {
         todos.push(todo)
+        todos = _.orderBy(todos)
+        localStorage.setItem('todos', todos)
         document.getElementById('todoInput').value = ''
         renderView(todos)
     }
 }
+
+function initRender() {
+    // console.log(_.split(localStorage.getItem('todos'),','))
+    todos = _.split(localStorage.getItem('todos'),',')
+    renderView(todos)
+}
+
+initRender()
