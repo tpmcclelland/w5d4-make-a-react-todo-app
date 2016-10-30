@@ -12,6 +12,14 @@ document.getElementById('todoAddBtn').addEventListener('click', addTodo)
 
 document.getElementById('todoInput').addEventListener('keypress', addTodo)
 
+document.getElementById('todoClearBtn').addEventListener('click', clearTodos)
+
+function clearTodos() {
+    localStorage.removeItem('todos')
+    todos = []
+    renderView(todos)
+}
+
 function addTodo(event) {
     var todo = document.getElementById('todoInput').value
 
@@ -21,6 +29,7 @@ function addTodo(event) {
 
     if ((event.type === 'keypress' && event.key === 'Enter') || event.type === 'click') {
         todos.push(todo)
+        // todos.push({item: todo})
         todos = _.orderBy(todos)
         localStorage.setItem('todos', todos)
         document.getElementById('todoInput').value = ''
@@ -30,8 +39,11 @@ function addTodo(event) {
 
 function initRender() {
     // console.log(_.split(localStorage.getItem('todos'),','))
-    todos = _.split(localStorage.getItem('todos'),',')
-    renderView(todos)
+    if (localStorage.getItem('todos') !== null) {
+        todos = _.split(localStorage.getItem('todos'),',')
+        renderView(todos)
+    }
+
 }
 
 initRender()

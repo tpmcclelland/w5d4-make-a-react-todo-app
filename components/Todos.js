@@ -6,7 +6,7 @@ const Todos = (props) => {
         return <TodoItem item={item} key={i} />
     })
 
-    return <div className="panel panel-default">
+    return <div className="panel panel-primary">
               <div className="panel-heading">
                 <h3 className="panel-title">Todo List</h3>
               </div>
